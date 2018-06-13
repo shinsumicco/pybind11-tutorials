@@ -1,15 +1,10 @@
+import os
+import sys
+import errno
+import numpy
+import subprocess
 from distutils.core import setup
 from Cython.Build import cythonize
-import numpy
- 
-setup(
-     ext_modules = cythonize("cython_numpy.pyx"),
-     include_dirs = [numpy.get_include()]
-)
-
-import os
-import errno
-import subprocess
 
 def mkdir_p(path):
     try:
@@ -18,9 +13,37 @@ def mkdir_p(path):
         if exc.errno != errno.EEXIST or not os.path.isdir(path):
             raise
 
-print("Configuring...")
-mkdir_p("build")
-subprocess.Popen(["cmake", ".."], cwd="build").wait()
+build = False
+clean = False
 
-print("Compiling extension...")
-subprocess.Popen(["make", "-j4"], cwd="build").wait()
+if 2 <= len(sys.argv):
+    if sys.argv[1] == "build" or sys.argv[1] == "build_ext":
+        build = True
+    elif sys.argv[1] == "clean":
+        clean = True
+    else:
+        print("Undefined command: {}".format(sys.argv[1]))
+        exit(1)
+else:
+    print("Prease specify a command: build, clean")
+    exit(1)
+
+if build:
+    sys.argv[1] = "build_ext"
+
+setup(
+     ext_modules = cythonize("cython_numpy.pyx"),
+     include_dirs = [numpy.get_include()]
+)
+
+if build:
+    print("Configuring...")
+    mkdir_p("build")
+    subprocess.Popen(["cmake", ".."], cwd="build").wait()
+
+    print("Compiling extension...")
+    subprocess.Popen(["make", "-j4"], cwd="build").wait()
+
+if clean:
+    print("Removing...")
+    subprocess.Popen(["rm", "-r", "build"], cwd=os.path.join("./", os.path.dirname(sys.argv[0]))).wait()
