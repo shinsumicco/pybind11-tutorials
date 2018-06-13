@@ -6,10 +6,8 @@
 #include <iostream>
 
 double summation(const Eigen::MatrixXd& X, const Eigen::MatrixXd& Y) {
-#ifdef _OPENMP
-    std::cout << "(OpenMP is enabled.)" << std::endl;
-#else
-    std::cout << "(OpenMP is disabled.)" << std::endl;
+#ifndef _OPENMP
+    std::cerr << "Warning: OpenMP is disabled." << std::endl;
 #endif
     double s = 0;
     size_t i, j;
