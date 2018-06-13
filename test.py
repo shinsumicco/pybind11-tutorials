@@ -17,44 +17,56 @@ else:
     iteration = 1
 
 print("pure numpy:")
-sum = 0
+elapsed_times = []
 for i in range(iteration):
     start = time.time()
     pure_numpy.summation(X, Y)
     elapsed = time.time() - start
     print("- iteration {0:>3}: {1:.8f} [s]".format(i + 1, elapsed))
-    sum += elapsed
-print("- average: {0:.8f} [s]".format(sum / iteration))
+    elapsed_times.append(elapsed)
+print("- average: {0:.8f} [s]".format(np.average(elapsed_times)))
+print("- median:  {0:.8f} [s]".format(np.median(elapsed_times)))
+print("- maximum: {0:.8f} [s]".format(np.max(elapsed_times)))
+print("- minimum: {0:.8f} [s]".format(np.min(elapsed_times)))
 print("")
 
 print("cython numpy:")
-sum = 0
+elapsed_times = []
 for i in range(iteration):
     start = time.time()
     cython_numpy.summation(X, Y)
     elapsed = time.time() - start
     print("- iteration {0:>3}: {1:.8f} [s]".format(i + 1, elapsed))
-    sum += elapsed
-print("- average: {0:.8f} [s]".format(sum / iteration))
+    elapsed_times.append(elapsed)
+print("- average: {0:.8f} [s]".format(np.average(elapsed_times)))
+print("- median:  {0:.8f} [s]".format(np.median(elapsed_times)))
+print("- maximum: {0:.8f} [s]".format(np.max(elapsed_times)))
+print("- minimum: {0:.8f} [s]".format(np.min(elapsed_times)))
 print("")
 
 print("cpp:")
-sum = 0
+elapsed_times = []
 for i in range(iteration):
     start = time.time()
     cpp.summation(X, Y)
     elapsed = time.time() - start
     print("- iteration {0:>3}: {1:.8f} [s]".format(i + 1, elapsed))
-    sum += elapsed
-print("- average: {0:.8f} [s]".format(sum / iteration))
+    elapsed_times.append(elapsed)
+print("- average: {0:.8f} [s]".format(np.average(elapsed_times)))
+print("- median:  {0:.8f} [s]".format(np.median(elapsed_times)))
+print("- maximum: {0:.8f} [s]".format(np.max(elapsed_times)))
+print("- minimum: {0:.8f} [s]".format(np.min(elapsed_times)))
 print("")
 
 print("openmp cpp:")
-sum = 0
+elapsed_times = []
 for i in range(iteration):
     start = time.time()
     openmp_cpp.summation(X, Y)
     elapsed = time.time() - start
     print("- iteration {0:>3}: {1:.8f} [s]".format(i + 1, elapsed))
-    sum += elapsed
-print("- average: {0:.8f} [s]".format(sum / iteration))
+    elapsed_times.append(elapsed)
+print("- average: {0:.8f} [s]".format(np.average(elapsed_times)))
+print("- median:  {0:.8f} [s]".format(np.median(elapsed_times)))
+print("- maximum: {0:.8f} [s]".format(np.max(elapsed_times)))
+print("- minimum: {0:.8f} [s]".format(np.min(elapsed_times)))
