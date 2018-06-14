@@ -52,4 +52,4 @@ if build:
 
 if clean:
     print("Removing...")
-    subprocess.Popen(["rm", "-r", "build"], cwd=os.path.join("./", os.path.dirname(sys.argv[0]))).wait()
+    subprocess.Popen(["rm", "-r", "build", "__pycache__"], cwd=os.path.join("./", os.path.dirname(sys.argv[0]))).wait()
