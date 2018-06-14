@@ -3,8 +3,6 @@ import numpy as np
 cimport cython
 cimport numpy as cnp
 
-@cython.wraparound(False)
-@cython.boundscheck(False)
 def summation(cnp.ndarray[cnp.float64_t, ndim=1] X, cnp.ndarray[cnp.float64_t, ndim=1] Y):
     cdef cnp.float64_t s = 0
     cdef cnp.float64_t x, y
