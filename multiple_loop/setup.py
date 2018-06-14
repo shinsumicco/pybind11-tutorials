@@ -34,7 +34,11 @@ if build:
     sys.argv[1] = "build_ext"
 
 setup(
-    ext_modules = [Extension("cython_numpy", ["cython_numpy.pyx"])],
+    ext_modules = [Extension("cython_numpy",
+                             ["cython_numpy.pyx"]),
+                   Extension("cython_libmath",
+                             ["cython_libmath.pyx"],
+                             libraries=["m"])],
     cmdclass = {"build_ext": build_ext},
     include_dirs = [numpy.get_include()]
 )
