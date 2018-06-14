@@ -4,7 +4,9 @@ import errno
 import numpy
 import subprocess
 from distutils.core import setup
-from Cython.Build import cythonize
+from distutils.extension import Extension
+from Cython.Distutils import build_ext
+
 
 def mkdir_p(path):
     try:
@@ -32,15 +34,19 @@ if build:
     sys.argv[1] = "build_ext"
 
 setup(
-     ext_modules = cythonize("cython_numpy.pyx"),
-     include_dirs = [numpy.get_include()]
+    ext_modules = [Extension("cython_numpy", ["cython_numpy.pyx"])],
+    cmdclass = {"build_ext": build_ext},
+    include_dirs = [numpy.get_include()]
 )
 
 if build:
     print("Configuring...")
     mkdir_p("build")
-    subprocess.Popen(["cmake", ".."], cwd="build").wait()
-
+    subprocess.Popen(["cmake", "..",
+                      "-DCMAKE_BUILD_TYPE=Release",
+                      "-DCMAKE_C_FLAGS=-fopenmp -L/usr/local/opt/llvm/lib/",
+                      "-DCMAKE_CXX_FLAGS=-fopenmp -L/usr/local/opt/llvm/lib/"],
+                     cwd="build").wait()
     print("Compiling extension...")
     subprocess.Popen(["make", "-j4"], cwd="build").wait()
 

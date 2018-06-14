@@ -7,7 +7,9 @@ double summation(const Eigen::MatrixXd& X, const Eigen::MatrixXd& Y) {
     double s = 0;
     for (size_t i = 0; i < X.rows(); ++i) {
         for (size_t j = 0; j < Y.rows(); ++j) {
-            s += std::log10((X(i) + Y(j)) * (X(i) + Y(j))) + std::sqrt(X(i) * Y(j));
+            if (0 < X(i) * Y(j)) {
+                s += std::log10((X(i) + Y(j)) * (X(i) + Y(j))) + std::sqrt(X(i) * Y(j));
+            }
         }
     }
     return s;
