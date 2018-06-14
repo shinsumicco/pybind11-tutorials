@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-project(test C CXX)
+project(multiple_loop C CXX)
 
 set(CMAKE_MACOSX_RPATH ON)
 set(CMAKE_DISABLE_IN_SOURCE_BUILD ON)
@@ -22,9 +22,9 @@ if(OPENMP_FOUND)
 endif()
 
 set(PYBIND11_CPP_STANDARD -std=c++11)
-add_subdirectory("${test_SOURCE_DIR}/pybind11" "${test_SOURCE_DIR}/pybind11/build")
+add_subdirectory("${multiple_loop_SOURCE_DIR}/../pybind11" "${multiple_loop_SOURCE_DIR}/../pybind11/build")
 
 pybind11_add_module(cpp cpp.cc)
-set_target_properties(cpp PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${test_SOURCE_DIR}/.")
+set_target_properties(cpp PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${multiple_loop_SOURCE_DIR}/.")
 pybind11_add_module(openmp_cpp openmp_cpp.cc)
-set_target_properties(openmp_cpp PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${test_SOURCE_DIR}/.")
+set_target_properties(openmp_cpp PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${multiple_loop_SOURCE_DIR}/.")
