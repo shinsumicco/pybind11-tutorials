@@ -13,12 +13,10 @@ cdef extern from "math.h" nogil:
 @cython.boundscheck(False)
 def summation(cnp.ndarray[cnp.float64_t, ndim=1] X, cnp.ndarray[cnp.float64_t, ndim=1] Y):
     cdef cnp.float64_t s = 0
-    cdef cnp.float64_t x
-    cdef cnp.int_t j
-    cdef cnp.ndarray[cnp.float64_t, ndim=1] Y_matched
-    for x in X:
-        Y_matched = Y[0 < x * Y]
-        with nogil:
-            for j in range(Y_matched.shape[0]):
-                s += log10((x + Y_matched[j]) * (x + Y_matched[j])) + sqrt(x * Y_matched[j])
+    cdef cnp.int_t i, j
+    with nogil:
+        for i in range(X.shape[0]):
+            for j in range(Y.shape[0]):
+                if 0 < X[i] * Y[j]:
+                    s += log10((X[i] + Y[j]) * (X[i] + Y[j])) + sqrt(X[i] * Y[j])
     return s
