@@ -1,8 +1,10 @@
 # pybind11-tutorials
 
+## `multiple_loop`
+
 Comparion of calculation speeds of pure numpy, cython and C++ wrapper
 
-## Dependencies
+### Dependencies
 
 - Required
     - Compiler
@@ -15,19 +17,17 @@ Comparion of calculation speeds of pure numpy, cython and C++ wrapper
 - Recommended
     - OpenMP
 
- ## Preparation
+ ### Preparation
 
  ```bash
 $ python --version
 Python 3.6.4
 $ git clone https://github.com/shinsumicco/pybind11-tutorials --recursive
-$ cd pybind11-tutorials/class_wrapping/
-$ python setup.py build
-$ cd ../multiple_loop/
+$ cd pybind11-tutorials/multiple_loop/
 $ python setup.py build
  ```
 
-## Run
+### Run
 
 ```bash
 $ pwd
@@ -95,3 +95,7 @@ openmp cpp:
 - minimum: 21.88301 [ms]
 $
 ```
+
+## `class_wrapping`
+
+## `cvmat_numpy_conversion`
