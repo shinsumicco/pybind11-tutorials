@@ -31,27 +31,8 @@ $ python setup.py build
 
 ```bash
 $ pwd
-/path/to/pybind11-tutorials/class_wrapping
-$ python test.py 
-size: 0
-[]
-
-size: 1
-[1]
-
-size: 3
-[1, 5, 24]
-
-size: 13
-[1, 5, 24, 0, 3, 6, 9, 12, 15, 18, 21, 24, 27]
-
-$
-```
-
-```bash
-$ pwd
 /path/to/pybind11-tutorials/multiple_loop
-$ python test.py 
+$ python test.py
 pure numpy 1:
 - iteration   1: 7892.45796 [ms]
 - average: 7892.45796 [ms]
@@ -98,4 +79,77 @@ $
 
 ## `class_wrapping`
 
+An example to wrap the C++ class
+
+### Dependencies
+
+- Required
+    - Compiler
+        - Required: C++11 support
+    - Python
+        - Required: 3.5 or later
+
+### Preparation
+
+ ```bash
+$ python --version
+Python 3.6.4
+$ git clone https://github.com/shinsumicco/pybind11-tutorials --recursive
+$ cd pybind11-tutorials/class_wrapping/
+$ python setup.py build
+ ```
+
+### Run
+
+```bash
+$ pwd
+/path/to/pybind11-tutorials/class_wrapping
+$ python test.py
+size: 0
+[]
+
+size: 1
+[1]
+
+size: 3
+[1, 5, 24]
+
+size: 13
+[1, 5, 24, 0, 3, 6, 9, 12, 15, 18, 21, 24, 27]
+
+$
+```
+
 ## `cvmat_numpy_conversion`
+
+An example to convert `cv::Mat` and `ndarray` each other
+
+### Dependencies
+
+- Required
+    - Compiler
+        - Required: C++11 support
+    - Python
+        - Required: 3.5 or later
+    - OpenCV
+        - Required: 3.0 or later with Python3 bindings
+
+### Preparation
+
+ ```bash
+$ python --version
+Python 3.6.4
+$ git clone https://github.com/shinsumicco/pybind11-tutorials --recursive
+$ cd pybind11-tutorials/cvmat_numpy_conversion/
+$ python setup.py build
+ ```
+
+### Run
+
+```bash
+$ pwd
+/path/to/pybind11-tutorials/cvmat_numpy_conversion
+$ python test.py
+
+$
+```
